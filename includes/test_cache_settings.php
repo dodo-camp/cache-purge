@@ -44,12 +44,12 @@
 
         function render_test_cache_plugin_path_field () {
             $options = get_option( "test_cache_settings" );
-                if ($options["test_cache_plugin_path_field"].trim() == "" ) {
-                    update_option("test_cache_settings", array("test_cache_plugin_path_field" => "/var/www/html/cache-clean-plugin/wp-content/cache"));
-                }
+            if ($options["test_cache_plugin_path_field"].trim() == "" ) {
+                update_option("test_cache_settings", array("test_cache_plugin_path_field" => "/var/www/html/cache-clean-plugin/wp-content/cache"));
+            }
             ?>
             <input type="text" name="test_cache_settings[test_cache_plugin_path_field]" id="test_cache_settings[test_cache_plugin_path_field]" value="<?php echo $options["test_cache_plugin_path_field"] === "" ? "/var/www/html/cache-clean-plugin/wp-content/cache" : $options["test_cache_plugin_path_field"]   ?>">
-            <p class="description">Give path relative to wp-content directory</p>
+            <p class="description">Give absolute path of cache directory</p>
             <?php
         }
 

@@ -57,16 +57,15 @@
 
         function clean_cache_functionality () {
             $options = get_option("test_cache_settings");
+            if ($options["test_cache_plugin_path_field"].trim() == "" ) {
+                update_option("test_cache_settings", array("test_cache_plugin_path_field" => "/var/www/html/cache-clean-plugin/wp-content/cache"));
+            }
             $dirPath = realpath($options["test_cache_plugin_path_field"]);
-            if ($dirPath.trim() === "") {
-                echo "Empty Path";
+            $is_cache_deleted = $this -> deleteDir($dirPath);
+            if ($is_cache_deleted === false) {
+                echo "Cache not available";
             } else {
-                $is_cache_deleted = $this -> deleteDir($dirPath);
-                if ($is_cache_deleted === false) {
-                    echo "Cache not available";
-                } else {
-                    echo "Cache deleted successfully";
-                }
+                echo "Cache deleted successfully";
             }
             wp_die();
         }
