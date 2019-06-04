@@ -57,12 +57,16 @@
 
         function clean_cache_functionality () {
             $options = get_option("test_cache_settings");
-            $dirPath = realpath(plugin_dir_path(__FILE__) . "/../../../" . $options["test_cache_plugin_path_field"]);
-            $is_cache_deleted = $this -> deleteDir($dirPath);
-            if ($is_cache_deleted === false) {
-                echo "Cache not available";
+            $dirPath = realpath($options["test_cache_plugin_path_field"]);
+            if ($dirPath.trim() === "") {
+                echo "Empty Path";
             } else {
-                echo "Cache deleted successfully";
+                $is_cache_deleted = $this -> deleteDir($dirPath);
+                if ($is_cache_deleted === false) {
+                    echo "Cache not available";
+                } else {
+                    echo "Cache deleted successfully";
+                }
             }
             wp_die();
         }

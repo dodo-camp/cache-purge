@@ -20,7 +20,8 @@
         function create_options_menu_entries () {
             register_setting (
                 'test_cache_plugin_group',
-                'test_cache_settings'
+                'test_cache_settings',
+                array($this, "test_cache_sanitize")
             );
             add_settings_section (
                 'test_cache_plugin_section_one',
@@ -35,7 +36,6 @@
                 'test_cache_plugin_group',
                 'test_cache_plugin_section_one'
             );
-            $options = add_option( "test_cache_settings", array ('test_cache_plugin_path_field' => 'cache', 1, false) );
         }
 
         function test_cache_section_one_callback () {
@@ -44,8 +44,11 @@
 
         function render_test_cache_plugin_path_field () {
             $options = get_option( "test_cache_settings" );
+                if ($options["test_cache_plugin_path_field"].trim() == "" ) {
+                    update_option("test_cache_settings", array("test_cache_plugin_path_field" => "/var/www/html/cache-clean-plugin/wp-content/cache"));
+                }
             ?>
-            <input type="text" name="test_cache_settings[test_cache_plugin_path_field]" id="test_cache_settings[test_cache_plugin_path_field]" value="<?php echo $options["test_cache_plugin_path_field"] === "" ? "cache" : $options["test_cache_plugin_path_field"]  ?>">
+            <input type="text" name="test_cache_settings[test_cache_plugin_path_field]" id="test_cache_settings[test_cache_plugin_path_field]" value="<?php echo $options["test_cache_plugin_path_field"] === "" ? "/var/www/html/cache-clean-plugin/wp-content/cache" : $options["test_cache_plugin_path_field"]   ?>">
             <p class="description">Give path relative to wp-content directory</p>
             <?php
         }
