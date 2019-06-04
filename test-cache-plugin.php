@@ -7,5 +7,6 @@
 
     require_once(plugin_dir_path(__FILE__) . "includes/test_cache_plugin_main.php");
     require_once(plugin_dir_path(__FILE__) . "includes/test_cache_clean.php");
+    require_once(plugin_dir_path( __FILE__ ) . "includes/test_cache_settings.php");
 
 ?>
