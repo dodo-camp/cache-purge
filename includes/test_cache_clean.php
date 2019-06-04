@@ -56,7 +56,8 @@
         }
 
         function clean_cache_functionality () {
-            $dirPath = realpath(plugin_dir_path(__FILE__) . "/../../../cache");
+            $options = get_option("test_cache_settings");
+            $dirPath = realpath(plugin_dir_path(__FILE__) . "/../../../" . $options["test_cache_plugin_path_field"]);
             $is_cache_deleted = $this -> deleteDir($dirPath);
             if ($is_cache_deleted === false) {
                 echo "Cache not available";
