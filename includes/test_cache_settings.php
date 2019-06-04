@@ -35,6 +35,7 @@
                 'test_cache_plugin_group',
                 'test_cache_plugin_section_one'
             );
+            $options = add_option( "test_cache_settings", array ('test_cache_plugin_path_field' => 'cache', 1, false) );
         }
 
         function test_cache_section_one_callback () {
@@ -44,7 +45,8 @@
         function render_test_cache_plugin_path_field () {
             $options = get_option( "test_cache_settings" );
             ?>
-            <input type="text" name="test_cache_settings[test_cache_plugin_path_field]" id="test_cache_settings[test_cache_plugin_path_field]" value="<?php echo $options["test_cache_plugin_path_field"] ?>">
+            <input type="text" name="test_cache_settings[test_cache_plugin_path_field]" id="test_cache_settings[test_cache_plugin_path_field]" value="<?php echo $options["test_cache_plugin_path_field"] === "" ? "cache" : $options["test_cache_plugin_path_field"]  ?>">
+            <p class="description">Give path relative to wp-content directory</p>
             <?php
         }
 
