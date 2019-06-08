@@ -13,7 +13,7 @@
         }
 
         function enqueue_admin_scripts_plugin () {
-            wp_enqueue_script( "ajax-script", plugins_url( "../js/main.js", __FILE__ ), array('jquery'));
+            wp_enqueue_script( "ajax-script", plugins_url( "../js/main.js", __FILE__ ), array());
             wp_localize_script( 'ajax-script', 'ajax_object',  array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'action' => 'cache_clean'  ) );
         }
 

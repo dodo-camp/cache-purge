@@ -12,6 +12,7 @@
             $admin_bar -> add_node (
                 array(
                     'id' => 'cache-clean',
+                    'class' => '',
                     'title' => '
                         <div>
                             <img src="https://serverguy.com/wp-content/uploads/2018/03/serverguy-favicon.png" style="height: 20px; width: 20px; position: relative; top: 5px; margin-right: 5px; background: white; border-radius: 10px;">
