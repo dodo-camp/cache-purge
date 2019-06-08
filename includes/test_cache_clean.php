@@ -26,7 +26,7 @@
                         </div>
                     ',
                     'meta' => array (),
-                    'href' => '#'
+                    'href' => get_site_url() . "/wp-admin/options-general.php?page=cache_settings_options_menu#"
                 )
             );
         }

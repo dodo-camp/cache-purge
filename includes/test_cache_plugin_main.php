@@ -17,6 +17,7 @@
             wp_localize_script( 'ajax-script', 'ajax_object',  array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'action' => 'cache_clean'  ) );
         }
 
+
     }
 
     new Test_Cache_Plugin_Main();
