@@ -61,11 +61,12 @@
                 update_option("test_cache_settings", array("test_cache_plugin_path_field" => "/var/www/html/cache-clean-plugin/wp-content/cache"));
             }
             $dirPath = realpath($options["test_cache_plugin_path_field"]);
-            $is_cache_deleted = $this -> deleteDir($dirPath);
-            if ($is_cache_deleted === false) {
-                echo "Cache not available";
-            } else {
+            $this -> deleteDir($dirPath);
+            $total_items  = count( glob($dirPath + "/*", GLOB_ONLYDIR) );
+            if ($total_items < 1) {
                 echo "Cache deleted successfully";
+            } else {
+                echo "Unable to delete the cache";
             }
             wp_die();
         }
