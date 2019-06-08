@@ -6,8 +6,11 @@
             add_action('admin_bar_menu', array($this, "add_cache_button"), 100);
             add_action('admin_footer', array($this, 'clean_cache_linkage'));
             add_action( 'wp_ajax_cache_clean', array($this, 'clean_cache_functionality') );
-            if (get_option("test_cache_settings")["test_cache_plugin_autoclean_cache_checkbox"] == "autoclean") {
-                add_action('save_post', array($this, 'clean_cache_functionality'));
+            $options = get_option("test_cache_settings");
+            if ($options["test_cache_plugin_autoclean_cache_checkbox"] == "autoclean") {
+                add_action('save_post', array($this, 'auto_clean_cache'));
+            } else {
+                remove_action('save_post', array($this, 'auto_clean_cache'));
             }
         }
 
@@ -73,6 +76,15 @@
                 echo "Unable to delete the cache";
             }
             wp_die();
+        }
+
+        function auto_clean_cache () {
+            $options = get_option("test_cache_settings");
+            if ($options["test_cache_plugin_path_field"].trim() == "" ) {
+                update_option("test_cache_settings", array("test_cache_plugin_path_field" => "/var/run/nginx-fastcgi-cache/"));
+            }
+            $dirPath = realpath($options["test_cache_plugin_path_field"]);
+            $this -> deleteDir($dirPath);
         }
 
     }
