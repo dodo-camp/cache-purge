@@ -36,6 +36,13 @@
                 'test_cache_plugin_group',
                 'test_cache_plugin_section_one'
             );
+            add_settings_field (
+                'test_cache_plugin_autoclean_cache_checkbox',
+                'Autoclean cache on Post and Page update',
+                array ($this, 'render_test_cache_plugin_autoclean_cache_checkbox'),
+                'test_cache_plugin_group',
+                'test_cache_plugin_section_one'
+            );
         }
 
         function test_cache_section_one_callback () {
@@ -50,6 +57,14 @@
             ?>
             <input type="text" name="test_cache_settings[test_cache_plugin_path_field]" id="test_cache_settings[test_cache_plugin_path_field]" value="<?php echo $options["test_cache_plugin_path_field"] == "" ? "/var/run/nginx-fastcgi-cache/" : $options["test_cache_plugin_path_field"]   ?>">
             <p class="description">Give absolute path of cache directory</p>
+            <?php
+        }
+
+        function render_test_cache_plugin_autoclean_cache_checkbox () {
+            $options = get_option("test_cache_settings");
+            ?>
+            <input type="checkbox" name="test_cache_settings[test_cache_plugin_autoclean_cache_checkbox]" id="test_cache_settings[test_cache_plugin_autoclean_cache_checkbox]" <?php checked( $options['test_cache_plugin_autoclean_cache_checkbox'], "autoclean" ); ?> value='autoclean' >
+            <p class="description">Select if you want cache autoclean when post or page content changes</p>
             <?php
         }
 
