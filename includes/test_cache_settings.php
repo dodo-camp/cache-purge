@@ -57,7 +57,7 @@ class Test_Cache_Settings
     function render_test_cache_plugin_path_field()
     {
         $options = get_option("test_cache_settings");
-        if ($options["test_cache_plugin_path_field"] -> trim() == "") {
+        if (trim($options["test_cache_plugin_path_field"]) == "") {
             update_option("test_cache_settings", array("test_cache_plugin_path_field" => "/var/run/nginx-fastcgi-cache/"));
         }
         ?>

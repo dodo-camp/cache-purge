@@ -72,7 +72,7 @@ function deleteDir($dir)
 function clean_cache_functionality()
 {
     $options = get_option("test_cache_settings");
-    if ($options["test_cache_plugin_path_field"] -> trim() == "") {
+    if (trim($options["test_cache_plugin_path_field"]) == "") {
         update_option("test_cache_settings", array("test_cache_plugin_path_field" => "/var/run/nginx-fastcgi-cache/"));
     }
     $dirPath = realpath($options["test_cache_plugin_path_field"]);
@@ -89,7 +89,7 @@ function clean_cache_functionality()
 function auto_clean_cache()
 {
     $options = get_option("test_cache_settings");
-    if ($options["test_cache_plugin_path_field"] -> trim() == "") {
+    if (trim($options["test_cache_plugin_path_field"]) == "") {
         update_option("test_cache_settings", array("test_cache_plugin_path_field" => "/var/run/nginx-fastcgi-cache/"));
     }
     $dirPath = realpath($options["test_cache_plugin_path_field"]);
